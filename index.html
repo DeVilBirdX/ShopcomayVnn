@@ -1,0 +1,259 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Shop Mây VN - Thời Trang Đẳng Cấp</title>
+  <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
+  <script src="https://cdn.jsdelivr.net/npm/alpinejs@2.8.0/dist/alpine.min.js" defer></script>
+  <meta name="theme-color" content="#87CEEB">
+  <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@800&display=swap" rel="stylesheet">
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      margin: 0;
+      padding: 0;
+      overflow-x: hidden;
+    }
+
+    .hamburger {
+      position: fixed;
+      top: 20px;
+      right: 20px;
+      z-index: 20;
+      font-size: 30px;
+      cursor: pointer;
+    }
+
+    .menu-overlay {
+      position: fixed;
+      top: 0;
+      right: 0;
+      width: 0;
+      height: 100%;
+      background-color: rgba(0, 0, 0, 0.8);
+      color: #fff;
+      overflow-x: hidden;
+      transition: width 0.4s ease;
+      z-index: 15;
+    }
+
+    .menu-content {
+      width: 100%;
+      height: 100%;
+      padding: 60px 20px;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      text-align: center;
+    }
+
+    .menu-item {
+      padding: 15px 0;
+      border-bottom: 1px solid #ccc;
+      width: 100%;
+    }
+
+    .menu-overlay.open {
+      width: 40%;
+    }
+
+    .close-button {
+      position: absolute;
+      top: 20px;
+      right: 20px;
+      font-size: 30px;
+      cursor: pointer;
+      color: #fff;
+      display: none; /* Ẩn nút đóng */
+    }
+
+    /* Hiển thị nút đóng khi menu mở */
+    .menu-overlay.open .close-button {
+      display: block;
+    }
+    
+@keyframes gradientAnimation {
+  0% {
+    background-position: 0% 50%;
+  }
+  50% {
+    background-position: 100% 50%;
+  }
+  100% {
+    background-position: 0% 50%;
+  }
+}
+
+.header-title {
+  font-family: 'Montserrat', sans-serif; /* Thêm font chữ mới */
+  font-size: 2.7rem; /* Kích thước chữ */
+  font-weight: 800; /* Đậm chữ */
+  color: transparent; /* Chữ trong suốt */
+  background-image: linear-gradient(270deg, white, yellow); /* Gradient cho chữ */
+  background-clip: text; /* Clip nền chữ */
+  -webkit-background-clip: text; /* Clip nền chữ cho trình duyệt WebKit */
+  position: relative; /* Để hiệu ứng viền hoạt động */
+  background-size: 200% 200%; /* Kích thước gradient lớn hơn để tạo hiệu ứng chuyển động */
+  animation: gradientAnimation 3s ease infinite; /* Hiệu ứng chuyển động */
+  transition: transform 0.3s ease, text-shadow 0.3s ease; /* Hiệu ứng chuyển động */
+}
+
+.header-title:hover {
+  transform: scale(1.05); /* Phóng to chữ khi hover */
+  text-shadow: 0 0 10px rgba(255, 255, 255, 0.8), 0 0 20px rgba(255, 255, 255, 0.6); /* Hiệu ứng bóng chữ */
+}
+  </style>
+</head>
+<body class="bg-gray-50 text-gray-900 font-sans leading-relaxed">
+
+  <!-- Nút hamburger -->
+  <div class="hamburger" onclick="toggleMenu()">☰</div>
+  
+  <!-- Menu overlay với nút đóng -->
+  <div id="menuOverlay" class="menu-overlay closed">
+    <div class="close-button" onclick="toggleMenu()">❌</div> <!-- Dấu close -->
+    <div class="menu-content">
+      <h2 class="text-2xl font-bold mb-6">Menu</h2>
+      <div class="menu-item"><a href="https://shopmay.netlify.app">Trang chủ</a></div>
+      <div class="menu-item"><a href="#categories">Sản phẩm</a></div>
+      <div class="menu-item"><a href="#about">Giới thiệu</a></div>
+    </div>
+  </div>
+
+<!-- Header with Navbar -->
+<header class="bg-gradient-to-r from-blue-500 to-green-500 shadow-lg sticky top-0 z-10">
+  <div class="container mx-auto p-4 flex items-center justify-between">
+    <a href="https://shopmay.netlify.app" class="header-title">SHOP MÂY VN</a>
+  </div>
+</header>
+
+<!-- Banner Section -->
+<section id="new-collection" class="relative bg-cover bg-center h-[500px] flex items-center justify-center text-white" style="background-image: url('https://upload.wikimedia.org/wikipedia/commons/thumb/a/a6/Carolina_Herrera_AW14_12.jpg/640px-Carolina_Herrera_AW14_12.jpg');">
+  <div class="absolute inset-0 bg-gradient-to-r from-black to-transparent opacity-70"></div>
+  <div class="relative z-10 text-center px-4">
+    <h2 class="text-5xl font-extrabold drop-shadow-lg">Bộ Sưu Tập Hot Nhất</h2>
+    <p class="mt-4 text-xl drop-shadow-md">Cập nhật xu hướng mới nhất với nhiều kiểu dáng thời trang</p>
+    <a href="#categories" class="mt-6 inline-block bg-blue-600 text-white py-3 px-8 rounded-full font-semibold shadow-lg hover:bg-blue-700 hover:shadow-xl transition duration-300">Khám phá ngay</a>
+  </div>
+</section>
+
+<!-- Product Categories Section -->
+<section id="categories" class="container mx-auto p-8">
+  <h2 class="text-4xl font-bold mb-8 text-center text-gray-800">Các loại sản phẩm</h2>
+  <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-8">
+    <!-- Sản phẩm 1: Tất -->
+    <div class="bg-gray-50 p-6 shadow-md rounded-lg transform transition duration-500 hover:shadow-2xl hover:-translate-y-2">
+      <img src="https://png.pngtree.com/background/20230823/original/pngtree-3d-render-of-blank-space-on-diamond-textured-background-picture-image_4790878.jpg" class="w-full h-40 object-cover mb-4 rounded-lg shadow-sm">
+      <h3 class="font-semibold text-lg mb-2 text-gray-900">Đôi Tất Kim Cương Xanh Đính Đá Lục Bảo Mạ Vàng Bên Trong</h3>
+      <p class="text-lg text-gray-700 font-semibold mb-2">Giá: <span class="text-gray-900">5,300,000,000₫</span></p>
+      <span class="text-red-600 font-bold text-lg">Giảm giá 10%</span>
+      <button onclick="addToCart('Đôi Tất Kim Cương Xanh Đính Đá Lục Bảo Mạ Vàng Bên Trong')" class="flex items-center justify-center bg-blue-600 text-white py-2 px-4 rounded-full hover:bg-blue-700 transition-colors duration-200 w-full mt-4">
+        Thêm vào giỏ hàng
+      </button>
+    </div>
+
+    <!-- Sản phẩm 2: Tất -->
+    <div class="bg-gray-50 p-6 shadow-md rounded-lg transform transition duration-500 hover:shadow-2xl hover:-translate-y-2">
+      <img src="https://png.pngtree.com/background/20230823/original/pngtree-3d-render-of-blank-space-on-diamond-textured-background-picture-image_4790878.jpg" class="w-full h-40 object-cover mb-4 rounded-lg shadow-sm">
+      <h3 class="font-semibold text-lg mb-2 text-gray-900">Đôi Tất Trơn Màu Đỏ Đẹp</h3>
+      <p class="text-lg text-gray-700 font-semibold mb-2">Giá: <span class="text-gray-900">150,000₫</span></p>
+      <span class="text-red-600 font-bold text-lg">Giảm giá 5%</span>
+      <button onclick="addToCart('Đôi Tất Trơn Màu Đỏ Đẹp')" class="flex items-center justify-center bg-blue-600 text-white py-2 px-4 rounded-full hover:bg-blue-700 transition-colors duration-200 w-full mt-4">
+        Thêm vào giỏ hàng
+      </button>
+    </div>
+
+    <!-- Sản phẩm 3: Quần áo -->
+    <div class="bg-gray-50 p-6 shadow-md rounded-lg transform transition duration-500 hover:shadow-2xl hover:-translate-y-2">
+      <img src="https://png.pngtree.com/background/20230823/original/pngtree-3d-render-of-blank-space-on-diamond-textured-background-picture-image_4790878.jpg" class="w-full h-40 object-cover mb-4 rounded-lg shadow-sm">
+      <h3 class="font-semibold text-lg mb-2 text-gray-900">Áo Thun Trơn Màu Xanh Dương</h3>
+      <p class="text-lg text-gray-700 font-semibold mb-2">Giá: <span class="text-gray-900">250,000₫</span></p>
+      <span class="text-red-600 font-bold text-lg">Giảm giá 15%</span>
+      <button onclick="addToCart('Áo Thun Trơn Màu Xanh Dương')" class="flex items-center justify-center bg-blue-600 text-white py-2 px-4 rounded-full hover:bg-blue-700 transition-colors duration-200 w-full mt-4">
+        Thêm vào giỏ hàng
+      </button>
+    </div>
+
+    <!-- Sản phẩm 4: Quần áo -->
+    <div class="bg-gray-50 p-6 shadow-md rounded-lg transform transition duration-500 hover:shadow-2xl hover:-translate-y-2">
+      <img src="https://png.pngtree.com/background/20230823/original/pngtree-3d-render-of-blank-space-on-diamond-textured-background-picture-image_4790878.jpg" class="w-full h-40 object-cover mb-4 rounded-lg shadow-sm">
+      <h3 class="font-semibold text-lg mb-2 text-gray-900">Đầm Nữ Đỏ Sang Trọng</h3>
+      <p class="text-lg text-gray-700 font-semibold mb-2">Giá: <span class="text-gray-900">450,000₫</span></p>
+      <span class="text-red-600 font-bold text-lg">Giảm giá 20%</span>
+      <button onclick="addToCart('Đầm Nữ Đỏ Sang Trọng')" class="flex items-center justify-center bg-blue-600 text-white py-2 px-4 rounded-full hover:bg-blue-700 transition-colors duration-200 w-full mt-4">
+        Thêm vào giỏ hàng
+      </button>
+    </div>
+
+    <!-- Sản phẩm 5: Quần áo -->
+    <div class="bg-gray-50 p-6 shadow-md rounded-lg transform transition duration-500 hover:shadow-2xl hover:-translate-y-2">
+      <img src="https://png.pngtree.com/background/20230823/original/pngtree-3d-render-of-blank-space-on-diamond-textured-background-picture-image_4790878.jpg" class="w-full h-40 object-cover mb-4 rounded-lg shadow-sm">
+      <h3 class="font-semibold text-lg mb-2 text-gray-900">Áo Khoác Nam Màu Đen</h3>
+      <p class="text-lg text-gray-700 font-semibold mb-2">Giá: <span class="text-gray-900">600,000₫</span></p>
+      <span class="text-red-600 font-bold text-lg">Giảm giá 10%</span>
+      <button onclick="addToCart('Áo Khoác Nam Màu Đen')" class="flex items-center justify-center bg-blue-600 text-white py-2 px-4 rounded-full hover:bg-blue-700 transition-colors duration-200 w-full mt-4">
+        Thêm vào giỏ hàng
+      </button>
+    </div>
+
+    <!-- Sản phẩm 6: Quần áo -->
+    <div class="bg-gray-50 p-6 shadow-md rounded-lg transform transition duration-500 hover:shadow-2xl hover:-translate-y-2">
+      <img src="https://png.pngtree.com/background/20230823/original/pngtree-3d-render-of-blank-space-on-diamond-textured-background-picture-image_4790878.jpg" class="w-full h-40 object-cover mb-4 rounded-lg shadow-sm">
+      <h3 class="font-semibold text-lg mb-2 text-gray-900">Váy Nữ Họa Tiết Hoa</h3>
+      <p class="text-lg text-gray-700 font-semibold mb-2">Giá: <span class="text-gray-900">350,000₫</span></p>
+      <span class="text-red-600 font-bold text-lg">Giảm giá 25%</span>
+      <button onclick="addToCart('Váy Nữ Họa Tiết Hoa')" class="flex items-center justify-center bg-blue-600 text-white py-2 px-4 rounded-full hover:bg-blue-700 transition-colors duration-200 w-full mt-4">
+        Thêm vào giỏ hàng
+      </button>
+    </div>
+  </div>
+</section>
+
+<!-- About Section -->
+<section id="about" class="bg-gradient-to-r from-purple-400 to-pink-500 py-12">
+  <div class="container mx-auto text-center">
+    <h2 class="text-4xl font-bold mb-4 text-white">Về Chúng Tôi</h2>
+    <div class="flex justify-center mb-6">
+      <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTdKl4flH6gV0royOh-IDIN9kgrrsnGhx8zgQ&usqp=CAU" alt="Giới thiệu về chúng tôi" class="w-full max-w-lg rounded-lg shadow-lg transition-transform transform hover:scale-105">
+    </div>
+    <p class="text-yellow-200 max-w-2xl mx-auto mb-6">Shop Mây VN là nơi bạn có thể tìm thấy những sản phẩm đẹp, phong cách và chất lượng. Chúng tôi cam kết mang đến những sản phẩm chất lượng nhất, đáp ứng mọi nhu cầu về thời trang của bạn.</p>
+  </div>
+</section>
+
+<!-- Footer -->
+<footer class="bg-gray-900 text-white py-8">
+  <div class="container mx-auto text-center">
+    <p class="mb-4 text-sm">© 2024 Shop Mây VN. <br>Hàng đẹp và chất lượng là ưu tiên hàng đầu của khách hàng.</p>      
+    <b class="text-lg">Liên hệ</b>
+    <div class="flex justify-center space-x-8 mt-4">
+      <a href="#" target="_blank" class="hover:text-blue-500 transition-colors duration-200">Facebook</a>
+      <a href="#" target="_blank" class="hover:text-blue-500 transition-colors duration-200">Instagram</a>
+      <a href="#" target="_blank" class="hover:text-blue-500 transition-colors duration-200">Twitter</a>
+    </div>
+    <div class="mt-6 text-sm">
+      <p><a href="#" class="hover:text-blue-500">Chính sách bảo mật</a> | <a href="#" class="hover:text-blue-500">Điều khoản sử dụng</a></p>
+    </div>
+  </div>
+</footer>
+
+  <script>
+    function addToCart(productName) {
+      const customerName = prompt("Nhập tên khách hàng:");
+      const customerAddress = prompt("Nhập địa chỉ đặt hàng:");
+      
+      if (customerName && customerAddress) {
+        const emailBody = `Tên khách hàng: ${customerName}\nĐịa chỉ đặt hàng: ${customerAddress}\nSản phẩm: ${productName}`;
+        window.location.href = `mailto:hungphambay@gmail.com?subject=Đặt hàng từ ${customerName}&body=${encodeURIComponent(emailBody)}`;
+        alert("Đặt Hàng Thành Công\nXin cảm ơn quý khách!");
+      }
+    }
+  
+   function toggleMenu() {
+      const menuOverlay = document.getElementById('menuOverlay');
+      menuOverlay.classList.toggle('open');
+    }
+  </script>
+</body>
+</html>
